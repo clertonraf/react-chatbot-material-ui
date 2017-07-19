@@ -8,14 +8,15 @@ import Divider from 'material-ui/Divider';
 export default class Comment extends Component {
 
     render() {
-        let entity = this.props.entity === "CPA" ? {icon:<BOT />,text: "BOT"} : {icon: <Person />,text: "Me"}
+        let comment = this.props.comment;
+        let entity = comment.entity === "BOT" ? {icon:<BOT />,text: "BOT"} : {icon: <Person />,text: "Me"}
         return <div>
             <ListItem
                 leftAvatar={<Avatar icon={entity.icon} />}
-                primaryText={entity.text}
+                primaryText={comment.entity}
                 secondaryText={
                     <p>
-                        {this.props.text}
+                        {comment.text}
                     </p>
                 }
                 secondaryTextLines={2}

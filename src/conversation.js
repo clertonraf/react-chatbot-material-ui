@@ -15,6 +15,8 @@ var conversation = watson.conversation({
     version_date: '2017-05-26'
 });
 
+console.log(conversation);
+
 var context = {};
 
 console.log('User: oi');

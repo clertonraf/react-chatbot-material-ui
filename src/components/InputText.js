@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
-import { setInput } from './../actions/dialogActions';
+import { setInput, printUserDialog } from './../actions/dialogActions';
+import { sendMessage } from './../actions/watsonActions';
 
 class InputText extends Component {
 
@@ -11,7 +12,12 @@ class InputText extends Component {
 
     onKeyPressHandler(ev) {
         if (ev.key === 'Enter') {
-            console.log("ENTER")
+            this.props.printUserDialog(
+                {
+                    "text": this.props.dialog.inputTxt,
+                    "entity": "User"
+                }
+            );
             ev.preventDefault();
             this.props.setInput("");
         }
@@ -29,15 +35,16 @@ class InputText extends Component {
                 }}
                 onChange={(event, newValue) => this.onChangeHandler(event, newValue)}
                 value={this.props.dialog.inputTxt}
-                onKeyPress={(ev) => this.onKeyPressHandler(ev)} 
-                />
+                onKeyPress={(ev) => this.onKeyPressHandler(ev)}
+            />
         </div>;
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        dialog: state.dialogReducer
+        dialog: state.dialogReducer,
+        watson: state.watsonReducer
     };
 }
 
@@ -45,6 +52,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setInput: (txt) => {
             dispatch(setInput(txt));
+        },
+        printUserDialog: (dialog) => {
+            dispatch(printUserDialog(dialog));
         }
     };
 }

@@ -8,10 +8,12 @@ export default class App extends Component {
     render() {
         return <div>
             <AppBar
-                title="CPA Chatbot (Protótipo)"
+                title="Chatbot (Protótipo)"
                 iconClassNameRight="muidocs-icon-navigation-expand-more" />
             <div className="container-fluid">
                 <Dialog />
+            </div>
+            <div className="container-fluid">
                 <Footer />
             </div>
         </div>;

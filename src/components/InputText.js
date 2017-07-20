@@ -12,6 +12,7 @@ class InputText extends Component {
 
     onKeyPressHandler(ev) {
         if (ev.key === 'Enter') {
+            this.props.sendMessage(this.props.dialog.inputTxt);
             this.props.printUserDialog(
                 {
                     "text": this.props.dialog.inputTxt,
@@ -50,6 +51,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        sendMessage: (txt) => {
+            dispatch(sendMessage(txt));
+        },
         setInput: (txt) => {
             dispatch(setInput(txt));
         },
